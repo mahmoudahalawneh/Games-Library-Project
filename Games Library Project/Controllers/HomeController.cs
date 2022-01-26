@@ -1,5 +1,6 @@
 ﻿using Games_Library_Project.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -12,15 +13,15 @@ namespace Games_Library_Project.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private GameContext context { get; set; }
+        public HomeController(GameContext ctx)
         {
-            _logger = logger;
+            context = ctx;
         }
-
         public IActionResult Index()
         {
-            return View();
+            var games = (context.Games.Include(m => m.Genre).Include(m => m.Publisher).OrderBy(m => m.GameId)).ToList();
+            return View(games);
         }
 
         public IActionResult Privacy()
