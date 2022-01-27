@@ -42,7 +42,10 @@ namespace Games_Library_Project.Migrations
                     PublisherId = table.Column<int>(type: "int", nullable: false),
                     Year = table.Column<int>(type: "int", nullable: false),
                     GenreId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Available = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Available = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StoreLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ImgLink = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -83,13 +86,13 @@ namespace Games_Library_Project.Migrations
 
             migrationBuilder.InsertData(
                 table: "Game",
-                columns: new[] { "GameId", "Available", "GenreId", "Name", "PublisherId", "Year" },
+                columns: new[] { "GameId", "Available", "GenreId", "ImgLink", "Name", "Price", "PublisherId", "StoreLink", "Year" },
                 values: new object[,]
                 {
-                    { 1, null, "Pu", "Tetris", 1, 1984 },
-                    { 2, null, "Ac", "Half-Life", 2, 1998 },
-                    { 4, null, "Ac", "CS:GO", 2, 2012 },
-                    { 3, null, "Ad", "Unravel", 3, 2016 }
+                    { 1, "All", "Pu", "https://cdn.vox-cdn.com/thumbor/6Wng0B6dz6T2qkPcOdwm-3vuvYg=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/14257423/Switch_Tetris99_ND0213_SCRN_03.jpg", "Tetris", "Free", 1, "https://tetris.com/play-tetris", 1984 },
+                    { 2, "All", "Ac", "https://cdn.cloudflare.steamstatic.com/steam/apps/70/capsule_616x353.jpg?t=1591048039", "Half-Life", "9.99$", 2, "https://store.steampowered.com/app/70/HalfLife/", 1998 },
+                    { 4, "All", "Ac", "https://quoramarketing.com/wp-content/uploads/2021/05/Fix-CSGO-Download-Incomplete-Replay-Error.jpg", "CS:GO", "Free", 2, "https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/", 2012 },
+                    { 3, "All", "Ad", "https://media.contentapi.ea.com/content/dam/eacom/unravel/ea-hero-large-unravel-xl.jpg.adapt.crop16x9.575p.jpg", "Unravel", "19.99$", 3, "https://www.ea.com/en-gb/games/unravel", 2016 }
                 });
 
             migrationBuilder.CreateIndex(

@@ -17,6 +17,10 @@
             <td>@game.Year</td>
             <td>@game.Genre.Name</td>
             <td><a asp-action="Detial">Detail</a></td>
+            <td>@game.Available</td>
+            <td>@game.Price</td>
+            <td><a href=@game.StoreLink>Store Link</a>></td>
+            <tr><td colspan=9><img src=@game.ImgLink alt="Img Link" width="400" height="400"/></td>></tr>
         </tr>
     }
 </table>

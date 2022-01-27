@@ -19,6 +19,8 @@ namespace Games_Library_Project.Models
 
         public string Available { get; set; }
         [Required(ErrorMessage = "The game has no price.")]
-        public decimal Price { get; set; }
+        public string Price { get; set; }
+        public string StoreLink { get; set; }
+        public string ImgLink { get; set; }
     }
 }
