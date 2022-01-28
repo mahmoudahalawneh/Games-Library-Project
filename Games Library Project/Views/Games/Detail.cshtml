@@ -2,19 +2,29 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 
-@model Game
+@model IQueryable<Game>
 @{
-    ViewData["Title"] = "Detail"+Model.Name;
+    
+    var game = @Model.First();
+    ViewData["Title"] = "Detail "+@game.Name;
+}
+@{
+    <h1 class="Centre">@game.Name</h1>
+    <p class="Centre">Game's Img</p>
+    <img src=@game.ImgLink alt="Game's Img" width="1152" height="648" /><br />
+        <p>
+        Publisher: @game.Publisher.Name<br>
+        Release Year: @game.Year<br>
+        Game's Genre: @game.Genre.Name<br>
+        Available on: @game.Available<br>
+        Price: @game.Price <br>
+        Where to get: <a href=@game.StoreLink>@game.StoreLink</a> <br>
+        </p>
 }
 
-<h1 class="Centre">@Model.Name</h1>
-<p class="Centre">Game's Img</p>
-<img href="@Model.ImgLink" alt="Game Img" width="1152" height="648" />
-<pre>
-    Available on: @Model.Available
-    Price: @Model.Price
-    Where to get: @Model.StoreLink
-</pre>
-<p class="container Centre">
-        <a asp-controller="Games" >Edit</a> &nbsp; &nbsp; <a asp-controller="Games" >Delete</a>
-</p>
+<table class="table table-bordered table-striped Centre">
+        <tr>
+            <td><a asp-controller="Games" asp-action="EditGame" asp-route-id=@game.GameId>Edit</a></td>
+            <td><a asp-controller="Games" asp-route-id=@game.GameId>Delete</a></td>
+        </tr>
+</table>

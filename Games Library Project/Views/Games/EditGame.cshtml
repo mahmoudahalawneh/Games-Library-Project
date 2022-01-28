@@ -1,0 +1,58 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Game
+@{
+    ViewData["Title"] = ViewBag.Action;
+    var game = @Model;
+}
+@{
+    <form asp-action="EditGame" method="post">
+        <div asp-validation-summary="All"></div>
+        <label asp-for="Name">Name: </label>
+        <input asp-for="Name"><br>
+                
+        <label asp-for="PublisherId">Publisher: </label>
+        <select asp-for="PublisherId">
+            <option value=" ">Select a Publisher</option>
+            @foreach (Publisher p in ViewBag.Publisher)
+            { 
+                <option value="@p.PublisherId">@p.Name</option>
+            }
+        </select><br>
+
+        <label asp-for="Year">Year: </label>
+        <input type=number asp-for="Year"><br> 
+
+        <label asp-for="GenreId">Genre: </label>
+        <select asp-for="GenreId">
+            <option value=" ">Select a Genre</option>
+            @foreach (Genre g in ViewBag.Genre)
+            { 
+                <option value="@g.GenreId">@g.Name</option>
+            }
+        </select><br>
+
+        <label asp-for="Available">Available: </label>
+        <select asp-for="Available">
+            <option value=" ">Select a Platform</option>
+            <option value="All">All</option>
+            <option value="Xbox">Xbox</option>
+            <option value="Switch">Switch</option>
+            <option value="PC">PC</option>
+            <option value="None">None</option>
+        </select><br>
+
+        <label asp-for="ImgLink">Image Link: </label>
+        <input asp-for="ImgLink"><br>
+
+        <label asp-for="Price">Price: </label>
+        <input asp-for="Price"><br>
+
+        <label asp-for="StoreLink">Store Link: </label>
+        <input asp-for="StoreLink"><br>
+
+        <button type="submit">@ViewBag.Action</button>
+    </form>
+}
