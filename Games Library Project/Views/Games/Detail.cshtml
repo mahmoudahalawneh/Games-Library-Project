@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Game
+@{
+    ViewData["Title"] = "Detail"+Model.Name;
+}
+
+<h1 class="Centre">@Model.Name</h1>
+<p class="Centre">Game's Img</p>
+<img href="@Model.ImgLink" alt="Game Img" width="1152" height="648" />
+<pre>
+    Available on: @Model.Available
+    Price: @Model.Price
+    Where to get: @Model.StoreLink
+</pre>
+<p class="container Centre">
+        <a asp-controller="Games" >Edit</a> &nbsp; &nbsp; <a asp-controller="Games" >Delete</a>
+</p>

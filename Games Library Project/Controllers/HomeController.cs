@@ -13,15 +13,15 @@ namespace Games_Library_Project.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private GameContext context { get; set; }
-        public HomeController(GameContext ctx)
+
+        public HomeController(ILogger<HomeController> logger)
         {
-            context = ctx;
+            _logger = logger;
         }
+
         public IActionResult Index()
         {
-            var games = (context.Games.Include(m => m.Genre).Include(m => m.Publisher).OrderBy(m => m.GameId)).ToList();
-            return View(games);
+            return View();
         }
 
         public IActionResult Privacy()
