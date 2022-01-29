@@ -91,7 +91,6 @@ namespace Games_Library_Project.Controllers
                 {
                     game.UserId = getKey();
                     context.Add(game);
-                    context.Update(game);
                 }
                 else
                     context.Update(game);
