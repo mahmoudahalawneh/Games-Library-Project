@@ -3,32 +3,37 @@
 *@
 @{
     ViewData["Title"] = "Games List";
+    string g = " ";
 }
 @model List<Game>
-<table class="table table-bordered table-striped Centre">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Publisher</th>
-            <th>Release Year</th>
-            <th>Genre</th>
-            <th>Details</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var game in Model)
-        {
+<form asp-action="ListGames" method="post">
+    <label asp-for=@g>Search:</label><br/>
+    <input asp-for=@g/> <button asp-action="ListGames">Search</button><br/>
+    <table class="table table-bordered table-striped Centre">
+        <thead>
             <tr>
-                <td>@game.Name</td>
-                <td>@game.Publisher.Name</td>
-                <td>@game.Year</td>
-                <td>@game.Genre.Name</td>
-                <td><a asp-controller="Games" asp-action="Detail" asp-route-id="@game.GameId">Detail</a></td>
+                <th>Name</th>
+                <th>Publisher</th>
+                <th>Release Year</th>
+                <th>Genre</th>
+                <th>Details</th>
             </tr>
-        }
-        <tr>
-            <td colspan=3><a asp-controller="Games" asp-action="AddGame">Add Game</a></td>
-            <td colspan=2><a asp-controller="Games" asp-action="List">Go Back</a></td>
-        </tr>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach(var game in Model)
+            {
+                <tr>
+                    <td>@game.Name</td>
+                    <td>@game.Publisher.Name</td>
+                    <td>@game.Year</td>
+                    <td>@game.Genre.Name</td>
+                    <td><a asp-controller="Games" asp-action="Detail" asp-route-id="@game.GameId">Detail</a></td>
+                </tr>
+            }
+            <tr>
+                <td colspan=3><a asp-controller="Games" asp-action="AddGame">Add Game</a></td>
+                <td colspan=2><a asp-controller="Games" asp-action="List">Go Back</a></td>
+            </tr>
+        </tbody>
+    </table>
+</form>

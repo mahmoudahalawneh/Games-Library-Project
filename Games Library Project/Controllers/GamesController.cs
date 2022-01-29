@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Games_Library_Project.Controllers
@@ -22,10 +23,28 @@ namespace Games_Library_Project.Controllers
             IQueryable<Game> game = context.Games.Where(g => g.GameId == id).Include(m => m.Genre).Include(m => m.Publisher).OrderBy(m => m.GameId);
             return View(game);
         }
+        [HttpGet]
         public IActionResult ListGames()
         {
             var games = (context.Games.Include(m => m.Genre).Include(m => m.Publisher).OrderBy(m => m.GameId)).ToList();
             return View(games);
+        }
+        [HttpPost]
+        public IActionResult ListGames(string g)
+        {
+            if (g == null)
+                return RedirectToAction("ListGames");
+            else
+            {
+                var AllGames = context.Games.Include(m => m.Genre).Include(m => m.Publisher).OrderBy(m => m.GameId).ToList();
+                List<Game> games = new List<Game>();
+                foreach (var Gam in AllGames)
+                {
+                    if (Gam.Name.Contains(g) == true)
+                        games.Add(Gam);
+                }
+                return View(games);
+            }
         }
         [HttpGet]
         public IActionResult EditGame(int id)
@@ -73,11 +92,28 @@ namespace Games_Library_Project.Controllers
             return View("EditGame", new Game());
         }
         // End Game stuff
-
+        [HttpGet]
         public IActionResult ListGenres()
         {
             var genres = (context.Genres.OrderBy(g => g.Name).ToList());
             return View(genres);
+        }
+        [HttpPost]
+        public IActionResult ListGenres(string g)
+        {
+            if (g == null)
+                return RedirectToAction("ListGenres");
+            else
+            {
+                var AllGenres = (context.Genres.OrderBy(g => g.Name).ToList());
+                List<Genre> genres = new List<Genre>();
+                foreach (var Gen in AllGenres)
+                {
+                    if (Gen.Name.Contains(g) == true)
+                        genres.Add(Gen);
+                }
+                return View(genres);
+            }
         }
         [HttpGet]
         public IActionResult EditGenre(string id)
@@ -122,10 +158,28 @@ namespace Games_Library_Project.Controllers
             return View("EditGenre", new Genre());
         }
         // End Genre Stuff
+        [HttpGet]
         public IActionResult ListPublishers()
         {
             var publishers = (context.Publishers.OrderBy(g => g.Name).ToList());
             return View(publishers);
+        }
+        [HttpPost]
+        public IActionResult ListPublishers(string g)
+        {
+            if (g == null)
+                return RedirectToAction("ListGenres");
+            else
+            {
+                var AllPublishers = (context.Publishers.OrderBy(g => g.Name).ToList());
+                List<Publisher> publishers = new List<Publisher>();
+                foreach (var Pub in AllPublishers)
+                {
+                    if (Pub.Name.Contains(g) == true)
+                        publishers.Add(Pub);
+                }
+                return View(publishers);
+            }
         }
         [HttpGet]
         public IActionResult EditPublisher(int id)

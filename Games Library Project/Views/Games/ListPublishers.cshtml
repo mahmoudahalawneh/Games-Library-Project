@@ -8,30 +8,35 @@
 *@
 @{
     ViewData["Title"] = "Publishers List";
+    string g = " ";
 }
 @model List<Publisher>
-<table class="table table-bordered table-striped Centre">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Year</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var publisher in Model)
-        {
+<form asp-action="ListPublishers" method="post">
+    <label asp-for=@g>Search:</label><br/>
+    <input asp-for=@g/> <button asp-action="ListPublishers">Search</button><br/>
+    <table class="table table-bordered table-striped Centre">
+        <thead>
             <tr>
-                <td>@publisher.Name</td>
-                <td>@publisher.Year</td>
-                <td><a asp-controller="Games" asp-action="EditPublisher" asp-route-id="@publisher.PublisherId">Edit</a></td>
-                <td><a asp-controller="Games" asp-action="DeletePublisher" asp-route-id=@publisher.PublisherId>Delete</a></td>
+                <th>Name</th>
+                <th>Year</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
-        }
-        <tr>
-            <td colspan=2><a asp-controller="Games" asp-action="AddPublisher">Add Publisher</a></td>
-            <td colspan=2><a asp-controller="Games" asp-action="List">Go Back</a></td>
-        </tr>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach(var publisher in Model)
+            {
+                <tr>
+                    <td>@publisher.Name</td>
+                    <td>@publisher.Year</td>
+                    <td><a asp-controller="Games" asp-action="EditPublisher" asp-route-id="@publisher.PublisherId">Edit</a></td>
+                    <td><a asp-controller="Games" asp-action="DeletePublisher" asp-route-id=@publisher.PublisherId>Delete</a></td>
+                </tr>
+            }
+            <tr>
+                <td colspan=2><a asp-controller="Games" asp-action="AddPublisher">Add Publisher</a></td>
+                <td colspan=2><a asp-controller="Games" asp-action="List">Go Back</a></td>
+            </tr>
+        </tbody>
+    </table>
+</form>

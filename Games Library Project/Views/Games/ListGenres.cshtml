@@ -3,28 +3,33 @@
 *@
 @{
     ViewData["Title"] = "Genres List";
+    string g = " ";
 }
 @model List<Genre>
-<table class="table table-bordered table-striped Centre">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Edit</th>
-            <th>Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var genre in Model)
-        {
+<form asp-action="ListGenres" method="post">
+    <label asp-for=@g>Search:</label><br/>
+    <input asp-for=@g/> <button asp-action="ListGenres">Search</button><br/>
+    <table class="table table-bordered table-striped Centre">
+        <thead>
             <tr>
-                <td>@genre.Name</td>
-                <td><a asp-controller="Games" asp-action="EditGenre" asp-route-id="@genre.GenreId">Edit</a></td>
-                <td><a asp-controller="Games" asp-action="DeleteGenre" asp-route-id=@genre.GenreId>Delete</a></td>
+                <th>Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
             </tr>
-        }
-        <tr>
-            <td colspan=2><a asp-controller="Games" asp-action="AddGenre">Add Genre</a></td>
-            <td><a asp-controller="Games" asp-action="List">Go Back</a></td>
-        </tr>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach(var genre in Model)
+            {
+                <tr>
+                    <td>@genre.Name</td>
+                    <td><a asp-controller="Games" asp-action="EditGenre" asp-route-id="@genre.GenreId">Edit</a></td>
+                    <td><a asp-controller="Games" asp-action="DeleteGenre" asp-route-id=@genre.GenreId>Delete</a></td>
+                </tr>
+            }
+            <tr>
+                <td colspan=2><a asp-controller="Games" asp-action="AddGenre">Add Genre</a></td>
+                <td><a asp-controller="Games" asp-action="List">Go Back</a></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
