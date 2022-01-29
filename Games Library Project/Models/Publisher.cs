@@ -11,5 +11,8 @@ namespace Games_Library_Project.Models
         [Range(1958, 2026, ErrorMessage = "The publisher's starting Year must be in range of [1958,2026].")]
         public int Year { get; set; }
 
+        public int UserID { get; set; }
+        public User User { get; set; }
+
     }
 }

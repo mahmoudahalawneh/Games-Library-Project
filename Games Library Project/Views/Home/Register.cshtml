@@ -1,0 +1,27 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Register Page";
+    Layout = null;
+    ViewBag.User = 0;
+    var user = @Model;
+}
+<form asp-action="Register" method="post">
+    <table class="Centre table-bordered" style="margin: 25% auto; ">
+        <thead>
+            <tr>
+                <th><label>Username/Email:</label></th>
+                <th><label>Password:</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input asp-for=@user.UserName maxlength=100/></td>
+                <td><input asp-for=@user.Password type=password maxlength=100/></td>
+            </tr>
+            <tr>
+                <td><button type="submit"/>Register</td>
+                <td><button asp-action="Index"/>Cancel</td>
+            </tr>
+        </tbody>
+    </table>
+</form>

@@ -1,4 +1,5 @@
 ﻿using Games_Library_Project.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,24 +15,36 @@ namespace Games_Library_Project.Controllers
         {
             context = ctx;
         }
+        private bool checkLogin()
+        {
+            return HttpContext.Session.GetInt32("UserKey") !=null ;
+        }
+        private int getKey()
+        {
+            return (int)HttpContext.Session.GetInt32("UserKey");
+        }
         public IActionResult List()
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             return View();
         }
         public IActionResult Detail(int id)
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             IQueryable<Game> game = context.Games.Where(g => g.GameId == id).Include(m => m.Genre).Include(m => m.Publisher).OrderBy(m => m.GameId);
             return View(game);
         }
         [HttpGet]
         public IActionResult ListGames()
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             var games = (context.Games.Include(m => m.Genre).Include(m => m.Publisher).OrderBy(m => m.GameId)).ToList();
             return View(games);
         }
         [HttpPost]
         public IActionResult ListGames(string g)
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             if (g == null)
                 return RedirectToAction("ListGames");
             else
@@ -49,6 +62,7 @@ namespace Games_Library_Project.Controllers
         [HttpGet]
         public IActionResult EditGame(int id)
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             var game = context.Games.Find(id);
             ViewBag.Action = "Edit Game " + game.Name;
             ViewBag.Genre = context.Genres.OrderBy(g => g.Name).ToList();
@@ -58,12 +72,16 @@ namespace Games_Library_Project.Controllers
         [HttpPost]
         public IActionResult EditGame(Game game)
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             if (ModelState.IsValid)
             {
                 if (game.GameId == 0)
+                {
+                    game.GameId = getKey() * 100;
                     context.Add(game);
-                else 
-                    context.Update(game);
+                }
+            else
+                context.Update(game);
                 context.SaveChanges();
                 return RedirectToAction("ListGames");
             }
@@ -78,6 +96,7 @@ namespace Games_Library_Project.Controllers
         [HttpGet]
         public IActionResult DeleteGame(int id)
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             var game = context.Games.Find(id);
             context.Games.Remove(game);
             context.SaveChanges();
@@ -86,6 +105,7 @@ namespace Games_Library_Project.Controllers
         [HttpGet]
         public IActionResult AddGame()
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             ViewBag.Action = "Add Game";
             ViewBag.Genre = context.Genres.OrderBy(g => g.Name).ToList();
             ViewBag.Publisher = context.Publishers.OrderBy(p => p.Name).ToList();
@@ -95,12 +115,14 @@ namespace Games_Library_Project.Controllers
         [HttpGet]
         public IActionResult ListGenres()
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             var genres = (context.Genres.OrderBy(g => g.Name).ToList());
             return View(genres);
         }
         [HttpPost]
         public IActionResult ListGenres(string g)
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             if (g == null)
                 return RedirectToAction("ListGenres");
             else
@@ -118,6 +140,7 @@ namespace Games_Library_Project.Controllers
         [HttpGet]
         public IActionResult EditGenre(string id)
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             var genre = context.Genres.Find(id);
             ViewBag.Action = "Edit Genre " + genre.Name;
             return View(genre);
@@ -125,11 +148,12 @@ namespace Games_Library_Project.Controllers
         [HttpPost]
         public IActionResult EditGenre(Genre genre)
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             if (ModelState.IsValid)
             {
                 if (genre.GenreId == null)
                 {
-                    genre.GenreId = genre.Name.Substring(0, 2);
+                    genre.GenreId = (getKey()*10).ToString()+genre.Name.Substring(0, 2);
                     context.Add(genre);
                 }
                 else
@@ -146,6 +170,7 @@ namespace Games_Library_Project.Controllers
         [HttpGet]
         public IActionResult DeleteGenre(string id)
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             var genre = context.Genres.Find(id);
             context.Genres.Remove(genre);
             context.SaveChanges();
@@ -154,6 +179,7 @@ namespace Games_Library_Project.Controllers
         [HttpGet]
         public IActionResult AddGenre()
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             ViewBag.Action = "Add Genre";
             return View("EditGenre", new Genre());
         }
@@ -161,12 +187,14 @@ namespace Games_Library_Project.Controllers
         [HttpGet]
         public IActionResult ListPublishers()
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             var publishers = (context.Publishers.OrderBy(g => g.Name).ToList());
             return View(publishers);
         }
         [HttpPost]
         public IActionResult ListPublishers(string g)
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             if (g == null)
                 return RedirectToAction("ListGenres");
             else
@@ -184,6 +212,7 @@ namespace Games_Library_Project.Controllers
         [HttpGet]
         public IActionResult EditPublisher(int id)
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             var publisher = context.Publishers.Find(id);
             ViewBag.Action = "Edit Publisher " + publisher.Name;
             return View(publisher);
@@ -191,10 +220,12 @@ namespace Games_Library_Project.Controllers
         [HttpPost]
         public IActionResult EditPublisher(Publisher publisher)
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             if (ModelState.IsValid)
             {
                 if (publisher.PublisherId == 0)
                 {
+                    publisher.PublisherId = getKey() * 100;
                     context.Add(publisher);
                 }
                 else
@@ -211,6 +242,7 @@ namespace Games_Library_Project.Controllers
         [HttpGet]
         public IActionResult DeletePublisher(int id)
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             var publisher = context.Publishers.Find(id);
             context.Publishers.Remove(publisher);
             context.SaveChanges();
@@ -219,6 +251,7 @@ namespace Games_Library_Project.Controllers
         [HttpGet]
         public IActionResult AddPublisher()
         {
+            if (!checkLogin()) return RedirectToAction("Index", "Home");
             ViewBag.Action = "Add Publisher";
             return View("EditPublisher", new Publisher());
         }

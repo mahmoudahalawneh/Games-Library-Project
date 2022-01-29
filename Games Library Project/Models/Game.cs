@@ -24,6 +24,8 @@ namespace Games_Library_Project.Models
         [Required(ErrorMessage = "The game has no price.")]
         public string Price { get; set; }
         public string StoreLink { get; set; }
-        public string ImgLink { get; set; }
+        public string ImgLink { get; set; } 
+        public int UserID { get; set; }
+        public User User { get; set; }
     }
 }

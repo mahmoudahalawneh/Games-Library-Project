@@ -25,6 +25,8 @@ namespace Games_Library_Project
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddMemoryCache();
+            services.AddSession();
             services.AddControllersWithViews();
             services.AddDbContext<GameContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("GameConString")));
         }
@@ -48,6 +50,8 @@ namespace Games_Library_Project
             app.UseRouting();
 
             app.UseAuthorization();
+
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

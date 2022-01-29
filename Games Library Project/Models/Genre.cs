@@ -7,5 +7,7 @@ namespace Games_Library_Project.Models
         public string GenreId { get; set; }
         [Required(ErrorMessage = "Genre has no name.")]
         public string Name { get; set; }
+        public int UserID { get; set; }
+        public User User { get; set; }
     }
 }
