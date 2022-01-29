@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Games_Library_Project.Migrations
 {
     [DbContext(typeof(GameContext))]
-    [Migration("20220127071849_Publisher")]
-    partial class Publisher
+    [Migration("20220128220842_Genre")]
+    partial class Genre
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

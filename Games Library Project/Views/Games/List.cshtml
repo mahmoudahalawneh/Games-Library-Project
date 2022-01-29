@@ -2,31 +2,22 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-    ViewData["Title"] = "Game List";
+    ViewData["Title"] = "Choose a List";
 }
-@model List<Game>
-<table class="table table-bordered table-striped">
+<table class="table table-bordered table-striped Centre">
     <thead>
         <tr>
-            <th>REMOVE</th>
-            <th>Name</th>
-            <th>Publisher</th>
-            <th>Release Year</th>
-            <th>Genre</th>
-            <th>Detail</th>
+            <td>Games' List</td>
+            <td>Genres' List</td>
+            <td>Publishers' List</td>
         </tr>
     </thead>
     <tbody>
-        @foreach(var game in Model)
-        {
-            <tr>
-                <td>@game.GameId</td>
-                <td>@game.Name</td>
-                <td>@game.Publisher.Name</td>
-                <td>@game.Year</td>
-                <td>@game.Genre.Name</td>
-                <td><a asp-controller="Games" asp-action="Detail" asp-route-id="@game.GameId">Detail</a></td>
-            </tr>
-        }
+        <tr>
+            <td><a asp-controller="Games" asp-action="ListGames">Games</a></td>
+            <td><a asp-controller="Games" asp-action="ListGenres">Genres</a></td>
+            <td><a asp-controller="Games" asp-action="ListPublishers">Publishers</a></td>
+        </tr>
     </tbody>
+
 </table>

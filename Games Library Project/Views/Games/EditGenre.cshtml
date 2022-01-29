@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@model Genre
+@{
+    ViewData["Title"] = ViewBag.Action;
+    var genre = @Model;
+}
+@{
+    <form asp-action="EditGenre" method="post">
+        <div asp-validation-summary="All"></div>
+        <label asp-for="Name">Name: </label>
+        <input asp-for="Name"><br>
+        
+        <input type="hidden" asp-for="GenreId">
+        <button type="submit">@ViewBag.Action</button>
+        <button asp-controller="Games" asp-action="ListGenres">Cancel</button>
+    </form>
+}

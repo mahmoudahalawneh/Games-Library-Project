@@ -53,6 +53,9 @@
         <label asp-for="StoreLink">Store Link: </label>
         <input asp-for="StoreLink"><br>
 
+        <input type="hidden" asp-for="GameId">
+
         <button type="submit">@ViewBag.Action</button>
+        <button asp-action="ListGames">Cancel</button>
     </form>
 }
