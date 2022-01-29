@@ -1,5 +1,23 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+    Layout = null;
 }
-
-<a asp-controller = "Games" asp-action = "List">List</a>
+<form>
+    <table class="Centre table-bordered" style="margin: 25% auto; ">
+        <thead>
+            <tr>
+                <th><label>Username/Email:</label></th>
+                <th><label>Password:</label></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><input maxlength=100/></td>
+                <td><input type=password maxlength=100/></td>
+            </tr>
+            <tr>
+                <td colspan=2><button width=100% type="submit">Log In</button></td>
+            </tr>
+        </tbody>
+    </table>
+</form>
