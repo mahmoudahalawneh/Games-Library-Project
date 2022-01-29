@@ -38,7 +38,10 @@ namespace Games_Library_Project.Controllers
         public IActionResult ListGames()
         {
             if (!checkLogin()) return RedirectToAction("Index", "Home");
-            var games = (context.Games.Include(m => m.Genre).Include(m => m.Publisher).OrderBy(m => m.GameId)).ToList();
+            List<Game> games = new List<Game>();
+            foreach (Game g in (context.Games.Include(m => m.Genre).Include(m => m.Publisher).OrderBy(m => m.GameId)).ToList())
+                if (g.UserId == getKey())
+                    games.Add(g);
             return View(games);
         }
         [HttpPost]
@@ -53,7 +56,7 @@ namespace Games_Library_Project.Controllers
                 List<Game> games = new List<Game>();
                 foreach (var Gam in AllGames)
                 {
-                    if (Gam.Name.Contains(g) == true)
+                    if (Gam.Name.Contains(g) && Gam.UserId == getKey())
                         games.Add(Gam);
                 }
                 return View(games);
@@ -65,8 +68,17 @@ namespace Games_Library_Project.Controllers
             if (!checkLogin()) return RedirectToAction("Index", "Home");
             var game = context.Games.Find(id);
             ViewBag.Action = "Edit Game " + game.Name;
-            ViewBag.Genre = context.Genres.OrderBy(g => g.Name).ToList();
-            ViewBag.Publisher = context.Publishers.OrderBy(p => p.Name).ToList();
+            List<Genre> genres = new List<Genre>();
+            foreach (var g in (context.Genres.OrderBy(g => g.Name).ToList()))
+                if (g.UserId == getKey())
+                    genres.Add(g);
+            ViewBag.Genre = genres;
+
+            List<Publisher> publishers = new List<Publisher>();
+            foreach (var g in (context.Publishers.OrderBy(g => g.Name).ToList()))
+                if (g.UserId == getKey())
+                    publishers.Add(g);
+            ViewBag.Publisher = publishers;
             return View(game);
         }
         [HttpPost]
@@ -77,19 +89,29 @@ namespace Games_Library_Project.Controllers
             {
                 if (game.GameId == 0)
                 {
-                    game.GameId = getKey() * 100;
+                    game.UserId = getKey();
                     context.Add(game);
+                    context.Update(game);
                 }
-            else
-                context.Update(game);
+                else
+                    context.Update(game);
                 context.SaveChanges();
                 return RedirectToAction("ListGames");
             }
             else
             {
                 ViewBag.Action = "Edit Game " + game.Name;
-                ViewBag.Genre = context.Genres.OrderBy(g => g.Name).ToList();
-                ViewBag.Publisher = context.Publishers.OrderBy(p => p.Name).ToList();
+                List<Genre> genres = new List<Genre>();
+                foreach (var g in (context.Genres.OrderBy(g => g.Name).ToList()))
+                    if (g.UserId == getKey())
+                        genres.Add(g);
+                ViewBag.Genre = genres;
+
+                List<Publisher> publishers = new List<Publisher>();
+                foreach (var g in (context.Publishers.OrderBy(g => g.Name).ToList()))
+                    if (g.UserId == getKey())
+                        publishers.Add(g);
+                ViewBag.Publisher = publishers;
                 return View(game);
             }
         }
@@ -107,8 +129,17 @@ namespace Games_Library_Project.Controllers
         {
             if (!checkLogin()) return RedirectToAction("Index", "Home");
             ViewBag.Action = "Add Game";
-            ViewBag.Genre = context.Genres.OrderBy(g => g.Name).ToList();
-            ViewBag.Publisher = context.Publishers.OrderBy(p => p.Name).ToList();
+            List<Genre> genres = new List<Genre>();
+            foreach (var g in (context.Genres.OrderBy(g => g.Name).ToList()))
+                if (g.UserId == getKey())
+                    genres.Add(g);
+            ViewBag.Genre = genres;
+
+            List<Publisher> publishers = new List<Publisher>();
+            foreach (var g in (context.Publishers.OrderBy(g => g.Name).ToList()))
+                if (g.UserId == getKey())
+                    publishers.Add(g);
+            ViewBag.Publisher = publishers;
             return View("EditGame", new Game());
         }
         // End Game stuff
@@ -116,7 +147,10 @@ namespace Games_Library_Project.Controllers
         public IActionResult ListGenres()
         {
             if (!checkLogin()) return RedirectToAction("Index", "Home");
-            var genres = (context.Genres.OrderBy(g => g.Name).ToList());
+            List<Genre> genres = new List<Genre>();
+            foreach (var g in (context.Genres.OrderBy(g => g.Name).ToList()))
+                if (g.UserId == getKey())
+                    genres.Add(g);
             return View(genres);
         }
         [HttpPost]
@@ -131,7 +165,7 @@ namespace Games_Library_Project.Controllers
                 List<Genre> genres = new List<Genre>();
                 foreach (var Gen in AllGenres)
                 {
-                    if (Gen.Name.Contains(g) == true)
+                    if (Gen.Name.Contains(g) && Gen.UserId == getKey())
                         genres.Add(Gen);
                 }
                 return View(genres);
@@ -153,6 +187,7 @@ namespace Games_Library_Project.Controllers
             {
                 if (genre.GenreId == null)
                 {
+                    genre.UserId = getKey();
                     genre.GenreId = (getKey()*10).ToString()+genre.Name.Substring(0, 2);
                     context.Add(genre);
                 }
@@ -188,7 +223,10 @@ namespace Games_Library_Project.Controllers
         public IActionResult ListPublishers()
         {
             if (!checkLogin()) return RedirectToAction("Index", "Home");
-            var publishers = (context.Publishers.OrderBy(g => g.Name).ToList());
+            List<Publisher> publishers = new List<Publisher>();
+            foreach (var g in (context.Publishers.OrderBy(g => g.Name).ToList()))
+                if (g.UserId == getKey())
+                    publishers.Add(g);
             return View(publishers);
         }
         [HttpPost]
@@ -203,7 +241,7 @@ namespace Games_Library_Project.Controllers
                 List<Publisher> publishers = new List<Publisher>();
                 foreach (var Pub in AllPublishers)
                 {
-                    if (Pub.Name.Contains(g) == true)
+                    if (Pub.Name.Contains(g) && Pub.UserId == getKey())
                         publishers.Add(Pub);
                 }
                 return View(publishers);
@@ -224,8 +262,8 @@ namespace Games_Library_Project.Controllers
             if (ModelState.IsValid)
             {
                 if (publisher.PublisherId == 0)
-                {
-                    publisher.PublisherId = getKey() * 100;
+                { 
+                    publisher.UserId = getKey();
                     context.Add(publisher);
                 }
                 else

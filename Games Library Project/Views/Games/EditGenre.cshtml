@@ -14,6 +14,7 @@
         <input asp-for="Name"><br>
         
         <input type="hidden" asp-for="GenreId">
+        <input type="hidden" asp-for="UserId">
         <button type="submit">@ViewBag.Action</button>
         <button asp-controller="Games" asp-action="ListGenres">Cancel</button>
     </form>

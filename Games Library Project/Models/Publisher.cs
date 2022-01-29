@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Games_Library_Project.Models
 {
@@ -11,8 +12,9 @@ namespace Games_Library_Project.Models
         [Range(1958, 2026, ErrorMessage = "The publisher's starting Year must be in range of [1958,2026].")]
         public int Year { get; set; }
 
-        public int UserID { get; set; }
-        public User User { get; set; }
+        [Required]
+        [ForeignKey("User")]
+        public int UserId { get; set; }
 
     }
 }

@@ -17,6 +17,7 @@
         <input type=number asp-for="Year"><br>
         
         <input type="hidden" asp-for="PublisherId">
+        <input type="hidden" asp-for="UserId">
         <button type="submit">@ViewBag.Action</button>
         <button asp-controller="Games" asp-action="ListPublishers">Cancel</button>
     </form>

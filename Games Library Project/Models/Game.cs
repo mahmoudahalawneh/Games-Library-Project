@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Games_Library_Project.Models
 {
@@ -9,7 +10,8 @@ namespace Games_Library_Project.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "The game has no publisher.")]
-        public int PublisherId { get; set; }
+        [ForeignKey("Publisher")]
+        public int ? PublisherId { get; set; }
         public Publisher Publisher { get; set; }
 
         [Required(ErrorMessage = "The game has no release year.")]
@@ -17,6 +19,7 @@ namespace Games_Library_Project.Models
         public int Year { get; set; }
 
         [Required(ErrorMessage = "The game has no Genre.")]
+        [ForeignKey("Genre")]
         public string GenreId { get; set; }
         public Genre Genre { get; set; }
 
@@ -24,8 +27,8 @@ namespace Games_Library_Project.Models
         [Required(ErrorMessage = "The game has no price.")]
         public string Price { get; set; }
         public string StoreLink { get; set; }
-        public string ImgLink { get; set; } 
-        public int UserID { get; set; }
-        public User User { get; set; }
+        public string ImgLink { get; set; }
+        [ForeignKey("User")]
+        public int UserId { get; set; }
     }
 }
