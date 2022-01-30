@@ -24,9 +24,27 @@ namespace Games_Library_Project.Controllers
         {
             return View();
         }
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult Register(User use)
+        {
+            var users = context.Users.ToList();
+            foreach (var u in users)
+            {
+                if (u.UserName.Equals(use.UserName))
+                {
+                    ViewBag.Error = "Username Already in user";
+                    return View();
+                }
+
+            }
+            context.Add(use);
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
         [HttpPost]
         public IActionResult Login(User use)

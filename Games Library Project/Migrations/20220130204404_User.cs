@@ -10,9 +10,9 @@ namespace Games_Library_Project.Migrations
                 name: "Genre",
                 columns: table => new
                 {
-                    GenreId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    GenreId = table.Column<string>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -23,11 +23,11 @@ namespace Games_Library_Project.Migrations
                 name: "Publisher",
                 columns: table => new
                 {
-                    PublisherId = table.Column<int>(type: "int", nullable: false)
+                    PublisherId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Year = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(nullable: false),
+                    Year = table.Column<int>(nullable: false),
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -38,10 +38,10 @@ namespace Games_Library_Project.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    UserName = table.Column<string>(nullable: false),
+                    Password = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,17 +52,17 @@ namespace Games_Library_Project.Migrations
                 name: "Game",
                 columns: table => new
                 {
-                    GameId = table.Column<int>(type: "int", nullable: false)
+                    GameId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PublisherId = table.Column<int>(type: "int", nullable: false),
-                    Year = table.Column<int>(type: "int", nullable: false),
-                    GenreId = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Available = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Price = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StoreLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ImgLink = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UserId = table.Column<int>(type: "int", nullable: false)
+                    Name = table.Column<string>(nullable: false),
+                    PublisherId = table.Column<int>(nullable: false),
+                    Year = table.Column<int>(nullable: false),
+                    GenreId = table.Column<string>(nullable: false),
+                    Available = table.Column<string>(nullable: true),
+                    Price = table.Column<string>(nullable: false),
+                    StoreLink = table.Column<string>(nullable: true),
+                    ImgLink = table.Column<string>(nullable: true),
+                    UserId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

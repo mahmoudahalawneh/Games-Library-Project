@@ -2,26 +2,33 @@
 @{
     ViewData["Title"] = "Register Page";
     Layout = null;
-    ViewBag.User = 0;
     var user = @Model;
 }
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
 <form asp-action="Register" method="post">
     <table class="Centre table-bordered" style="margin: 25% auto; ">
         <thead>
             <tr>
-                <th><label>Username/Email:</label></th>
+                <th><label>Username:</label></th>
                 <th><label>Password:</label></th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><input asp-for=@user.UserName maxlength=100/></td>
-                <td><input asp-for=@user.Password type=password maxlength=100/></td>
+                <td><input asp-for=UserName maxlength=100 td>
+                <td><input asp-for=Password type=password maxlength=100/></td>
             </tr>
             <tr>
-                <td><button type="submit"/>Register</td>
-                <td><button asp-action="Index"/>Cancel</td>
+                <td><button type="submit" class="btn btn-primary" style="width: 100%;"/>Register</td>
+                <td><a asp-action="Index" class="btn btn-primary" style="width: 100%;"/>Cancel</td>
+            </tr>
+            <tr>
+                <td colspan=2><p>@ViewBag.Error</p></td>
             </tr>
         </tbody>
     </table>
+    <input hidden asp-for=UserId />
 </form>
