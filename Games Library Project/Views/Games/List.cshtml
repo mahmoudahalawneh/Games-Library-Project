@@ -4,20 +4,15 @@
 @{
     ViewData["Title"] = "Choose a List";
 }
-<table class="bgWhite table table-bordered table-striped Centre">
-    <thead>
-        <tr>
-            <td>Games' List</td>
-            <td>Genres' List</td>
-            <td>Publishers' List</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><a asp-controller="Games" asp-action="ListGames">Games</a></td>
-            <td><a asp-controller="Games" asp-action="ListGenres">Genres</a></td>
-            <td><a asp-controller="Games" asp-action="ListPublishers">Publishers</a></td>
-        </tr>
-    </tbody>
-
+<table class="table table-bordered table-striped Centre">
+        <tr class="table-info"><th>Games' List</th></tr>
+        <tr><td><a asp-controller="Games" asp-action="ListGames">Games</a></td></tr>
+</table><br />
+<table class="table table-bordered table-striped Centre">
+        <tr class="table-success"><th>Genres' List</th></tr>
+        <tr><td><a asp-controller="Games" asp-action="ListGenres">Genres</a></td></tr>
+</table><br />
+<table class="table table-bordered table-striped Centre">
+        <tr class="table-warning"><th>Publishers' List</th></tr>
+        <tr><td><a asp-controller="Games" asp-action="ListPublishers">Publishers</a></td></tr>
 </table>

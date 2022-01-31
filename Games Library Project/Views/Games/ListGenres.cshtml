@@ -22,13 +22,13 @@
             {
                 <tr>
                     <td>@genre.Name</td>
-                    <td><a asp-controller="Games" asp-action="EditGenre" asp-route-id="@genre.GenreId">Edit</a></td>
-                    <td><a asp-controller="Games" asp-action="DeleteGenre" asp-route-id=@genre.GenreId>Delete</a></td>
+                    <td class="table-warning"><a asp-controller="Games" asp-action="EditGenre" asp-route-id="@genre.GenreId">Edit</a></td>
+                    <td class="table-danger"><a asp-controller="Games" asp-action="DeleteGenre" asp-route-id=@genre.GenreId>Delete</a></td>
                 </tr>
             }
             <tr>
-                <td colspan=2><a asp-controller="Games" asp-action="AddGenre">Add Genre</a></td>
-                <td><a asp-controller="Games" asp-action="List">Go Back</a></td>
+                <td class="table-success" colspan=2><a asp-controller="Games" asp-action="AddGenre">Add Genre</a></td>
+                <td class="table-secondary"><a asp-controller="Games" asp-action="List">Go Back</a></td>
             </tr>
         </tbody>
     </table>

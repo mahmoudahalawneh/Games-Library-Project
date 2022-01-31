@@ -29,13 +29,13 @@
                 <tr>
                     <td>@publisher.Name</td>
                     <td>@publisher.Year</td>
-                    <td><a asp-controller="Games" asp-action="EditPublisher" asp-route-id="@publisher.PublisherId">Edit</a></td>
-                    <td><a asp-controller="Games" asp-action="DeletePublisher" asp-route-id=@publisher.PublisherId>Delete</a></td>
+                    <td class="table-warning" ><a asp-controller="Games" asp-action="EditPublisher" asp-route-id="@publisher.PublisherId">Edit</a></td>
+                    <td class="table-danger" ><a asp-controller="Games" asp-action="DeletePublisher" asp-route-id=@publisher.PublisherId>Delete</a></td>
                 </tr>
             }
             <tr>
-                <td colspan=2><a asp-controller="Games" asp-action="AddPublisher">Add Publisher</a></td>
-                <td colspan=2><a asp-controller="Games" asp-action="List">Go Back</a></td>
+                <td class="table-success" colspan=2><a asp-controller="Games" asp-action="AddPublisher">Add Publisher</a></td>
+                <td class="table-secondary" colspan=2><a asp-controller="Games" asp-action="List">Go Back</a></td>
             </tr>
         </tbody>
     </table>

@@ -9,24 +9,35 @@
     ViewData["Title"] = "Detail "+@game.Name;
 }
 @{
-<body class="textWhite">
-    <h1 class="Centre">@game.Name</h1>
-    <p class="Centre">Game's Img</p>
-    <img src=@game.ImgLink alt="Game's Img" width="1152" height="648" /><br />
-        <p>
-        Publisher: @game.Publisher.Name<br>
-        Release Year: @game.Year<br>
-        Game's Genre: @game.Genre.Name<br>
-        Available on: @game.Available<br>
-        Price: @game.Price <br>
-        Where to get: <a href=@game.StoreLink>@game.StoreLink</a> <br>
-        </p>
+<body>
+    <h1 class="Centre">@game.Name</h1><br>
+    <img src=@game.ImgLink alt="Game's Img" width="960" height="540" /><br />
+        <table class="bgWhite table table-bordered table-striped Centre">
+            <tr>
+                <th>Publisher: </th><td>@game.Publisher.Name</td>
+            </tr>
+            <tr>
+                <th>Release Year: </th><td>@game.Year</td>
+            </tr>
+            <tr>
+                <th>Game's Genre: </th><td>@game.Genre.Name</td>
+            </tr>
+            <tr>
+                <th>Available on: </th><td>@game.Available</td>
+            </tr>
+            <tr>
+                <th>Price: </th><td>@game.Price</td>
+            </tr>
+            <tr>
+                <th>Where to get: </th><td><a href=@game.StoreLink>@game.StoreLink</a></td>
+            </tr>
+        </table>
 </body>
 }
 
 <table class="table table-bordered table-striped Centre">
         <tr>
-            <td><a asp-controller="Games" asp-action="EditGame" asp-route-id=@game.GameId>Edit</a></td>
-            <td><a asp-controller="Games" asp-action="DeleteGame" asp-route-id=@game.GameId>Delete</a></td>
+            <td class="table-success"><a asp-controller="Games" asp-action="EditGame" asp-route-id=@game.GameId>Edit</a></td>
+            <td class="table-danger"><a asp-controller="Games" asp-action="DeleteGame" asp-route-id=@game.GameId>Delete</a></td>
         </tr>
 </table>
