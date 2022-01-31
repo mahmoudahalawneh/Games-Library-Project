@@ -12,9 +12,9 @@
 }
 @model List<Publisher>
 <form asp-action="ListPublishers" method="post">
-    <label asp-for=@g>Search:</label><br/>
+    <label  class="textWhite" asp-for=@g>Search:</label><br/>
     <input asp-for=@g/> <button asp-action="ListPublishers">Search</button><br/>
-    <table class="table table-bordered table-striped Centre">
+    <table class="bgWhite table table-bordered table-striped Centre">
         <thead>
             <tr>
                 <th>Name</th>

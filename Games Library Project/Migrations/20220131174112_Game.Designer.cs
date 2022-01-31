@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Games_Library_Project.Migrations
 {
     [DbContext(typeof(GameContext))]
-    [Migration("20220130204409_Genre")]
-    partial class Genre
+    [Migration("20220131174112_Game")]
+    partial class Game
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -88,7 +88,7 @@ namespace Games_Library_Project.Migrations
                             GenreId = "10Ac",
                             ImgLink = "https://cdn.cloudflare.steamstatic.com/steam/apps/70/capsule_616x353.jpg?t=1591048039",
                             Name = "Half-Life",
-                            Price = "9.99$",
+                            Price = "$9.99",
                             PublisherId = 2,
                             StoreLink = "https://store.steampowered.com/app/70/HalfLife/",
                             UserId = 1,
@@ -101,7 +101,7 @@ namespace Games_Library_Project.Migrations
                             GenreId = "10Ad",
                             ImgLink = "https://media.contentapi.ea.com/content/dam/eacom/unravel/ea-hero-large-unravel-xl.jpg.adapt.crop16x9.575p.jpg",
                             Name = "Unravel",
-                            Price = "19.99$",
+                            Price = "$19.99",
                             PublisherId = 3,
                             StoreLink = "https://www.ea.com/en-gb/games/unravel",
                             UserId = 1,
@@ -119,6 +119,97 @@ namespace Games_Library_Project.Migrations
                             StoreLink = "https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/",
                             UserId = 1,
                             Year = 2012
+                        },
+                        new
+                        {
+                            GameId = 5,
+                            Available = "All",
+                            GenreId = "20Ro",
+                            ImgLink = "https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg?t=1621944801",
+                            Name = "Cyberpunk 2077",
+                            Price = "$59.99",
+                            PublisherId = 4,
+                            StoreLink = "https://store.steampowered.com/app/1091500/Cyberpunk_2077/?snr=1_550_553__1009",
+                            UserId = 2,
+                            Year = 2020
+                        },
+                        new
+                        {
+                            GameId = 6,
+                            Available = "All",
+                            GenreId = "20FP",
+                            ImgLink = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqe2y9fgNzrBGERVxiYXqPV19sXlAOAq_mS61JGMAIqtAbv0NktCbAUf6CZ1XhFNewGzA&usqp=CAU",
+                            Name = "DOOM Eternal",
+                            Price = "$19.99",
+                            PublisherId = 5,
+                            StoreLink = "https://store.steampowered.com/app/782330/DOOM_Eternal/",
+                            UserId = 2,
+                            Year = 2020
+                        },
+                        new
+                        {
+                            GameId = 7,
+                            Available = "Switch",
+                            GenreId = "20So",
+                            ImgLink = "https://i.ytimg.com/vi/qK8qe7O0OM8/maxresdefault.jpg",
+                            Name = "Animal Crossing: New Horizons",
+                            Price = "$59.99",
+                            PublisherId = 6,
+                            StoreLink = "https://store.steampowered.com/app/782330/DOOM_Eternal/",
+                            UserId = 2,
+                            Year = 2020
+                        },
+                        new
+                        {
+                            GameId = 8,
+                            Available = "Playstation",
+                            GenreId = "20Ha",
+                            ImgLink = "https://cdn1.epicgames.com/offer/3ddd6a590da64e3686042d108968a6b2/EGS_GodofWar_SantaMonicaStudio_S1_2560x1440-5d74d9b240bba8f2c40920dcde7c5c67_2560x1440-5d74d9b240bba8f2c40920dcde7c5c67",
+                            Name = "God of War",
+                            Price = "$19.99",
+                            PublisherId = 7,
+                            StoreLink = "https://www.playstation.com/en-us/games/god-of-war/",
+                            UserId = 2,
+                            Year = 2018
+                        },
+                        new
+                        {
+                            GameId = 9,
+                            Available = "All",
+                            GenreId = "30RP",
+                            ImgLink = "https://www.ginx.tv/uploads2/Genshin_Impact/GenshinBombing_inside_1.jpeg?ezimgfmt=ng%3Awebp%2Fngcb5%2Frs%3Adevice%2Frscb5-2",
+                            Name = "Genshin Impact",
+                            Price = "Free",
+                            PublisherId = 8,
+                            StoreLink = "https://genshin.mihoyo.com/en/",
+                            UserId = 3,
+                            Year = 2020
+                        },
+                        new
+                        {
+                            GameId = 10,
+                            Available = "PC",
+                            GenreId = "30FP",
+                            ImgLink = "https://cdn.cloudflare.steamstatic.com/steam/apps/444090/header.jpg?t=1643214144",
+                            Name = "Paladins",
+                            Price = "Free",
+                            PublisherId = 9,
+                            StoreLink = "https://www.paladins.com/",
+                            UserId = 3,
+                            Year = 2016
+                        },
+                        new
+                        {
+                            GameId = 11,
+                            Available = "All",
+                            GenreId = "30MM",
+                            ImgLink = "https://cdnb.artstation.com/p/assets/covers/images/043/597/157/large/daniel-wee-daniel-wee-6.jpg?1637719403",
+                            Name = "Smite",
+                            Price = "Free",
+                            PublisherId = 9,
+                            StoreLink = "https://www.smitegame.com/",
+                            UserId = 3,
+                            Year = 2014
                         });
                 });
 
@@ -156,6 +247,48 @@ namespace Games_Library_Project.Migrations
                             GenreId = "10Pu",
                             Name = "Puzzle",
                             UserId = 1
+                        },
+                        new
+                        {
+                            GenreId = "20Ro",
+                            Name = "Role-Playing",
+                            UserId = 2
+                        },
+                        new
+                        {
+                            GenreId = "20FP",
+                            Name = "FPS",
+                            UserId = 2
+                        },
+                        new
+                        {
+                            GenreId = "20So",
+                            Name = "Social simulation",
+                            UserId = 2
+                        },
+                        new
+                        {
+                            GenreId = "20Ha",
+                            Name = "Hack N Slash",
+                            UserId = 2
+                        },
+                        new
+                        {
+                            GenreId = "30RP",
+                            Name = "RPG",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            GenreId = "30FP",
+                            Name = "FPS",
+                            UserId = 3
+                        },
+                        new
+                        {
+                            GenreId = "30MM",
+                            Name = "MMORPG",
+                            UserId = 3
                         });
                 });
 
@@ -201,6 +334,48 @@ namespace Games_Library_Project.Migrations
                             Name = "EA",
                             UserId = 1,
                             Year = 1983
+                        },
+                        new
+                        {
+                            PublisherId = 4,
+                            Name = "CD PROJEKT RED",
+                            UserId = 2,
+                            Year = 2020
+                        },
+                        new
+                        {
+                            PublisherId = 5,
+                            Name = "Bethesda Softworks",
+                            UserId = 2,
+                            Year = 1986
+                        },
+                        new
+                        {
+                            PublisherId = 6,
+                            Name = "Nintendo",
+                            UserId = 2,
+                            Year = 1889
+                        },
+                        new
+                        {
+                            PublisherId = 7,
+                            Name = "Sony Interactive Entertainment",
+                            UserId = 2,
+                            Year = 1993
+                        },
+                        new
+                        {
+                            PublisherId = 8,
+                            Name = "miHoYo",
+                            UserId = 3,
+                            Year = 2012
+                        },
+                        new
+                        {
+                            PublisherId = 9,
+                            Name = "Hi Rez Studios",
+                            UserId = 3,
+                            Year = 2005
                         });
                 });
 
@@ -228,13 +403,19 @@ namespace Games_Library_Project.Migrations
                         {
                             UserId = 1,
                             Password = "Admin",
-                            UserName = "Admin"
+                            UserName = "Mahmoud"
                         },
                         new
                         {
                             UserId = 2,
                             Password = "123",
-                            UserName = "123"
+                            UserName = "AAA"
+                        },
+                        new
+                        {
+                            UserId = 3,
+                            Password = "321",
+                            UserName = "F2P"
                         });
                 });
 

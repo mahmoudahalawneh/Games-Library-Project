@@ -6,25 +6,34 @@
 <head>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <style>   
+    .bgImg {
+    background-image: url("https://wallpaper.dog/large/17167833.gif");
+    }
+    .bgWhite{
+        background-color: white;
+    }
+    </style>
 </head>
-
-<form asp-action="Login" method="post">
-    <table class="Centre table-bordered" style="margin: 25% auto; ">
-        <thead>
-            <tr>
-                <th><label asp-for="UserName">Username:</label></th>
-                <th><label asp-for="Password">Password:</label></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input asp-for="UserName" maxlength=100/></td>
-                <td><input asp-for="Password" type=password maxlength=100/></td>
-            </tr>
-            <tr>
-                <td><button type="submit" class="btn btn-primary" style="width: 100%;"/>Login</td>
-                <td><a asp-action="Register" class="btn btn-primary" style="width: 100%;"/>Register</td>
-            </tr>
-        </tbody>
-    </table>
-</form>
+<body class="bgImg">
+    <form asp-action="Login" method="post">
+        <table class="bgWhite Centre table-bordered " style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">
+            <thead>
+                <tr>
+                    <th><label asp-for="UserName">Username:</label></th>
+                    <th><label asp-for="Password">Password:</label></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input asp-for="UserName" maxlength=100/></td>
+                    <td><input asp-for="Password" type=password maxlength=100/></td>
+                </tr>
+                <tr>
+                    <td><button type="submit" class="btn btn-primary" style="width: 100%;"/>Login</td>
+                    <td><a asp-action="Register" class="btn btn-primary" style="width: 100%;"/>Register</td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</body>

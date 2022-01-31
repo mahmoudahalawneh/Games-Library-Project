@@ -8,6 +8,7 @@
     var game = @Model;
 }
 @{
+<body class="textWhite">
     <form asp-action="EditGame" method="post">
         <div asp-validation-summary="All"></div>
         <label asp-for="Name">Name: </label>
@@ -40,6 +41,7 @@
             <option value="All">All</option>
             <option value="Xbox">Xbox</option>
             <option value="Switch">Switch</option>
+            <option value="Playstation">Playstation</option>
             <option value="PC">PC</option>
             <option value="None">None</option>
         </select><br>
@@ -59,4 +61,5 @@
         <button type="submit">@ViewBag.Action</button>
         <button asp-action="ListGames">Cancel</button>
     </form>
+</body>
 }

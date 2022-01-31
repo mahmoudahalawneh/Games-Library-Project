@@ -8,6 +8,7 @@
     var genre = @Model;
 }
 @{
+<body class="textWhite">
     <form asp-action="EditGenre" method="post">
         <div asp-validation-summary="All"></div>
         <label asp-for="Name">Name: </label>
@@ -18,4 +19,5 @@
         <button type="submit">@ViewBag.Action</button>
         <button asp-controller="Games" asp-action="ListGenres">Cancel</button>
     </form>
+</body>
 }

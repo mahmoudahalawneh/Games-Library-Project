@@ -9,6 +9,7 @@
     ViewData["Title"] = "Detail "+@game.Name;
 }
 @{
+<body class="textWhite">
     <h1 class="Centre">@game.Name</h1>
     <p class="Centre">Game's Img</p>
     <img src=@game.ImgLink alt="Game's Img" width="1152" height="648" /><br />
@@ -20,6 +21,7 @@
         Price: @game.Price <br>
         Where to get: <a href=@game.StoreLink>@game.StoreLink</a> <br>
         </p>
+</body>
 }
 
 <table class="table table-bordered table-striped Centre">
