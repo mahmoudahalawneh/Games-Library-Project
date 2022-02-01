@@ -1,0 +1,44 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Register Page";
+    Layout = null;
+    var user = @Model;
+}
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>   
+    .bgImg {
+    background-image: url("https://i.gifer.com/3HeL.gif");
+    }
+    .bgWhite{
+        background-color: white;
+    }
+    </style>
+</head>
+<body class="bgImg">
+    <form asp-action="EditUser" method="post">
+        <table class="bgWhite Centre table-bordered" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);">
+            <thead>
+                <tr>
+                    <th><label>Username:</label></th>
+                    <th><label>Password:</label></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input asp-for=UserName value=@user.UserName readonly maxlength=100/></td>
+                    <td><input asp-for=Password type=password maxlength=100/></td>
+                </tr>
+                <tr>
+                    <td><button type="submit" class="btn btn-primary" style="width: 100%;"/>Update</td>
+                    <td><a asp-action="List" class="btn btn-primary" style="width: 100%;"/>Cancel</td>
+                </tr>
+                <tr>
+                    <td colspan=2><p>@ViewBag.Error</p></td>
+                </tr>
+            </tbody>
+        </table>
+        <input hidden asp-for=UserId />
+    </form>
+</body>

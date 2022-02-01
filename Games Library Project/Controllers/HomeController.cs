@@ -46,6 +46,19 @@ namespace Games_Library_Project.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
+        [HttpGet]
+        public IActionResult EditUser()
+        {
+            User u = context.Users.Find(HttpContext.Session.GetInt32("UserKey"));
+            return View(u);
+        }
+        [HttpPost]
+        public IActionResult EditUser(User use)
+        {
+            context.Update(use);
+            context.SaveChanges();
+            return RedirectToAction("List", "Games");
+        }
         [HttpPost]
         public IActionResult Login(User use)
         {
