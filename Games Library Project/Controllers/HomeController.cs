@@ -68,11 +68,12 @@ namespace Games_Library_Project.Controllers
                 var users = context.Users.ToList();
                 foreach (var u in users)
                     if (use.UserName == u.UserName && use.Password.Equals(u.Password))
-                    {
+                    {     
                         HttpContext.Session.SetInt32("UserKey", u.UserId);
                         return RedirectToAction("List", "Games");
                     }
             }
+            ViewBag.Error = "Incorrect Info";
             return View("Index");
         }
         public IActionResult Logout()

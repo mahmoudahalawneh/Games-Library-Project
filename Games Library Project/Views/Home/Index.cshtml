@@ -33,7 +33,10 @@
                     <td><button type="submit" class="btn btn-primary" style="width: 100%;"/>Login</td>
                     <td><a asp-action="Register" class="btn btn-primary" style="width: 100%;"/>Register</td>
                 </tr>
-            </tbody>
+                <tr>
+                    <td colspan=2><p>@ViewBag.Error</p></td>
+                </tr>
+            </tbody>>
         </table>
     </form>
 </body>

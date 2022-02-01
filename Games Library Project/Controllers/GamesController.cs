@@ -233,7 +233,7 @@ namespace Games_Library_Project.Controllers
         {
             if (!checkLogin()) return RedirectToAction("Index", "Home");
             if (g == null)
-                return RedirectToAction("ListGenres");
+                return RedirectToAction("ListPublishers");
             else
             {
                 var AllPublishers = (context.Publishers.OrderBy(g => g.Name).ToList());
